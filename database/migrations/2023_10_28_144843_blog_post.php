@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('blog_posts', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->integer('id')->autoIncrement();
             $table->foreignId('user_id')->nullable()->index();
             $table->text('subject');
             $table->longText('body');

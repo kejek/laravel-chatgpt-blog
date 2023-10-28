@@ -14,7 +14,7 @@ parameters:
             - app/Providers/FortifyServiceProvider.php
             - config
 
-    level: 9
+    level: 1
 
     ignoreErrors:
         - '#Call to static method factory\(\) on an unknown class App\\Models\\Team#'

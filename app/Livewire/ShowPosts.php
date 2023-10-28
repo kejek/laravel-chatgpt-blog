@@ -3,20 +3,35 @@
 namespace App\Livewire;
 
 use App\Models\BlogPost;
-use Illuminate\Database\Eloquent\Collection;
+use App\Services\CommonMark;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Component;
-use Spatie\LaravelMarkdown\MarkdownRenderer;
+use Livewire\WithPagination;
 
 class ShowPosts extends Component
 {
-    /** @var Collection<BlogPost> */
-    public Collection $posts;
+    use WithPagination;
 
     public function render(): View
     {
-        $this->posts = BlogPost::all();
 
-        return view('livewire.show-posts');
+        LengthAwarePaginator::useTailwind();
+
+        $posts = BlogPost::orderBy('created_at', 'desc')->paginate(2);
+
+        $convertedCollection = new Collection();
+
+        foreach ($posts->getCollection() as $post) {
+            $post->body = CommonMark::convertToHtml($post->body);
+            $convertedCollection->add($post);
+        }
+
+        $posts->setCollection($convertedCollection);
+
+        return view('livewire.show-posts', [
+            'posts' => $posts,
+        ]);
     }
 }
