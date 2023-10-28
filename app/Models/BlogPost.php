@@ -10,7 +10,10 @@ class BlogPost extends Model
 {
     use HasFactory;
 
-    public function user(): BelongsTo {
+    protected $fillable = ['user_id', 'title', 'subject', 'body', 'created_at', 'updated_at'];
+
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 }
