@@ -28,7 +28,6 @@
         "SESSION_DRIVER": "cookie"
     },
     "buildCommand": [
-        "vercel build",
-        "php artisan migrate"
+        "vercel build && php artisan migrate"
     ]
 }
