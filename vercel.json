@@ -27,5 +27,8 @@
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie"
     },
-    "buildCommand": "php artisan migrate"
+    "buildCommand": [
+        "vercel build",
+        "php artisan migrate"
+    ]
 }
