@@ -63,6 +63,11 @@
         "format": [
             "./vendor/bin/pint",
             "./node_modules/.bin/blade-formatter \"./resources/**/*.blade.php\" --write"
+        ],
+        "build": [
+            "composer install",
+            "npm install",
+            "@php artisan migrate"
         ]
     },
     "extra": {
