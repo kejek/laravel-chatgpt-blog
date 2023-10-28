@@ -11,27 +11,24 @@ class CreateBlogPostController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $ip = $request->server('REMOTE_ADDR');
-
-        if ($ip === '127.0.0.1') {
-            return response()->json([
-                'message' => 'Your ip is local? -  '.$ip,
-            ]);
-        } else {
-            return response()->json([
-                'message' => 'Your ip is not local - '.$ip,
-            ]);
-        }
-        try {
-            RequestBlogPost::dispatch();
-        } catch (Exception $e) {
-            return response()->json([
-                'message' => $e->getMessage(),
-            ], 500);
-        }
+        $ip = $request->ip();
 
         return response()->json([
-            'message' => 'success',
+            "message" => "The ip is - ". $ip,
         ]);
+
+        if ($ip === '127.0.0.1') {
+            try {
+                RequestBlogPost::dispatch();
+            } catch (Exception $e) {
+                return response()->json([
+                    'message' => $e->getMessage(),
+                ], 500);
+            }
+
+            return response()->json([
+                'message' => 'success',
+            ]);
+        }
     }
 }
