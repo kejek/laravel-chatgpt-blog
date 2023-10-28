@@ -29,7 +29,7 @@
     },
     "crons": [
         {
-          "path": "/api/api/create-post",
+          "path": "/api/cron",
           "schedule": "* * * * *"
         }
       ]
