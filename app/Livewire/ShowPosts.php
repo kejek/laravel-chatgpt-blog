@@ -23,7 +23,7 @@ class ShowPosts extends Component
 
         $convertedCollection = new Collection();
 
-        foreach($posts->getCollection() as $post) {
+        foreach ($posts->getCollection() as $post) {
             $post->body = CommonMark::convertToHtml($post->body);
             $convertedCollection->add($post);
         }

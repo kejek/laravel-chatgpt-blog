@@ -32,7 +32,7 @@
                                     </span>
                                 </header>
                                 <div class="dark:text-gray-300">
-                                        {!! $post->body !!}
+                                    {!! $post->body !!}
                                 </div>
                             </article>
                         </div>
@@ -44,38 +44,45 @@
                     <nav aria-label="Pagination">
                         <ul class="inline-flex -space-x-px text-base h-10">
                             @if ($posts->onFirstPage())
-                                <li >
-                                    <span class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <li>
+                                    <span
+                                        class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                                         Previous
                                     </span>
                                 </li>
                             @else
                                 <li>
-                                    <a href="#" wire:click="previousPage" wire:loading.attr="disabled" rel="prev" class="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+                                    <a href="#" wire:click="previousPage" wire:loading.attr="disabled"
+                                        rel="prev"
+                                        class="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
                                 </li>
-                             @endif
-                             @for($x = 1; $x <= $posts->lastPage(); $x++)
-                                @if($posts->currentPage() === $x)
+                            @endif
+                            @for ($x = 1; $x <= $posts->lastPage(); $x++)
+                                @if ($posts->currentPage() === $x)
                                     <li>
-                                        <a aria-current="page" class="flex items-center justify-center px-4 h-10 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">{{ $x }}</a>
+                                        <a aria-current="page"
+                                            class="flex items-center justify-center px-4 h-10 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">{{ $x }}</a>
                                     </li>
                                 @else
                                     <li>
-                                        <a href="{{ $posts->url($x) }}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ $x }}</a>
+                                        <a href="{{ $posts->url($x) }}"
+                                            class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ $x }}</a>
                                     </li>
                                 @endif
-                             @endfor
-                        @if ($posts->onLastPage())
-                            <li>
-                                <span class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                    Next
-                                </span>
-                            </li>
-                        @else
-                            <li>
-                                <a href="#" wire:click="nextPage" wire:loading.attr="disabled" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
-                            </li>
-                        @endif
+                            @endfor
+                            @if ($posts->onLastPage())
+                                <li>
+                                    <span
+                                        class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                        Next
+                                    </span>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="#" wire:click="nextPage" wire:loading.attr="disabled"
+                                        class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                                </li>
+                            @endif
                         </ul>
                     </nav>
                 @endif

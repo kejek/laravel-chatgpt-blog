@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Renderer;
 
@@ -25,7 +25,7 @@ class AnchorHeadingRenderer implements NodeRendererInterface
         Node $node,
         ChildNodeRendererInterface $childRenderer,
     ): HtmlElement {
-        $tagName = 'h' . $node->getLevel();
+        $tagName = 'h'.$node->getLevel();
         $attrs = $node->data->get('attributes', []);
 
         return new HtmlElement(
