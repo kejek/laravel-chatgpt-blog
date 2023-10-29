@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\CreateBlogPostController;
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
