@@ -45,4 +45,13 @@ class BlogPostController extends Controller
 
         $post->save();
     }
+
+    private function parseSubject($result): string
+    {
+        if (preg_match('/#(.*?)\\n/', $result, $match) == 1) {
+            return $match[1];
+        }
+
+        return '';
+    }
 }
