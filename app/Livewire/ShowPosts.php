@@ -4,11 +4,11 @@ namespace App\Livewire;
 
 use App\Models\BlogPost;
 use App\Services\CommonMark;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Spatie\ShikiPhp\Shiki;
 
 class ShowPosts extends Component
 {
@@ -17,7 +17,12 @@ class ShowPosts extends Component
     public function render(): View
     {
 
-        LengthAwarePaginator::useTailwind();
+        $response = Shiki::highlight(
+            code: '<?php echo "Hello World"; ?>',
+            language: 'php',
+        );
+
+        echo $response;
 
         $posts = BlogPost::orderBy('created_at', 'desc')->paginate(2);
 

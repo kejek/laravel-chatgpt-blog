@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\BlogPost;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use OpenAI\Laravel\Facades\OpenAI;
 
 class BlogPostController extends Controller
