@@ -69,8 +69,8 @@ class CommonMark
         $environment->addExtension(new ExternalLinkExtension());
         $environment->addExtension(new AttributesExtension());
         $environment->addExtension(new SmartPunctExtension());
-        $environment->addExtension(new HighlightCodeExtension('github-dark'));
         $environment->addExtension(new DefaultAttributesExtension());
+        $environment->addExtension(new HighlightCodeExtension('github-dark'));
 
         $convertor = new MarkdownConverter($environment);
 
