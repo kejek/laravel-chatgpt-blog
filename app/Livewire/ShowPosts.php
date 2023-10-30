@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Models\BlogPost;
 use App\Services\CommonMark;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Component;
