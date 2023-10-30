@@ -9,10 +9,7 @@ use OpenAI\Laravel\Facades\OpenAI;
 
 class BlogPostController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
+    public function index(Request $request)
     {
         $result = '';
         $result = OpenAI::chat()->create([

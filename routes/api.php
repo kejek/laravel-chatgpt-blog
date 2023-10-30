@@ -10,3 +10,8 @@
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+use App\Http\Controllers\BlogPostController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('create-post', [BlogPostController::class, 'index'])->name('create-post');
