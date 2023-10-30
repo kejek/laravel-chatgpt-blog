@@ -16,9 +16,6 @@ class ShowPosts extends Component
 
     public function render(): View
     {
-
-        LengthAwarePaginator::useTailwind();
-
         $posts = BlogPost::orderBy('created_at', 'desc')->paginate(2);
 
         $convertedCollection = new Collection();

@@ -14,7 +14,7 @@ use League\CommonMark\Extension\SmartPunct\SmartPunctExtension;
 use League\CommonMark\Extension\Table\Table;
 use League\CommonMark\MarkdownConverter;
 use League\CommonMark\Node\Block\Paragraph;
-use Spatie\CommonMarkShikiHighlighter\HighlightCodeExtension;
+use Torchlight\Commonmark\V2\TorchlightExtension;
 
 class CommonMark
 {
@@ -69,8 +69,8 @@ class CommonMark
         $environment->addExtension(new ExternalLinkExtension());
         $environment->addExtension(new AttributesExtension());
         $environment->addExtension(new SmartPunctExtension());
-        $environment->addExtension(new HighlightCodeExtension('github-dark'));
         $environment->addExtension(new DefaultAttributesExtension());
+        $environment->addExtension(new TorchlightExtension());
 
         $convertor = new MarkdownConverter($environment);
 
