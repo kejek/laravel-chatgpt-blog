@@ -30,22 +30,22 @@ class RequestBlogPost implements ShouldQueue
     public function handle(): void
     {
         /** @var Collection $posts */
-        $posts = BlogPost::all()->pluck('subject');
+        $posts = BlogPost::pluck('subject')->all();
 
         ray($posts);
 
         $titles = '';
 
-        foreach($posts as $post) {
+        foreach ($posts as $post) {
             ray($post);
-            $titles = $titles. ', '. $post;
+            $titles = $titles.', '.$post;
         }
 
         $result = '';
         $result = OpenAI::chat()->create([
             'model' => 'gpt-3.5-turbo',
             'messages' => [
-                ['role' => 'system', 'content' => 'Generate an article about a feature of laravel. Provide your answer in markdown form. Reply with only the answer in markdown form. Add Extra Line breaks between paragraphs. Use code examples in markdown when needed. Do not repeat these articles: '. $titles],
+                ['role' => 'system', 'content' => 'Generate an article about a feature of laravel. Provide your answer in markdown form. Reply with only the answer in markdown form. Add Extra Line breaks between paragraphs. Use code examples in markdown when needed. Do not repeat these articles: '.$titles],
             ],
         ]);
 
