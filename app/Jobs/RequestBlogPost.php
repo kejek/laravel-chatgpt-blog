@@ -5,8 +5,8 @@ namespace App\Jobs;
 use App\Models\BlogPost;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
@@ -29,11 +29,23 @@ class RequestBlogPost implements ShouldQueue
      */
     public function handle(): void
     {
+        /** @var Collection $posts */
+        $posts = BlogPost::all()->pluck('subject');
+
+        ray($posts);
+
+        $titles = '';
+
+        foreach($posts as $post) {
+            ray($post);
+            $titles = $titles. ', '. $post;
+        }
+
         $result = '';
         $result = OpenAI::chat()->create([
             'model' => 'gpt-3.5-turbo',
             'messages' => [
-                ['role' => 'system', 'content' => 'Generate an article about a feature of laravel. Provide your answer in markdown form. Reply with only the answer in markdown form. Add Extra Line breaks between paragraphs. Use code examples in markdown when needed.'],
+                ['role' => 'system', 'content' => 'Generate an article about a feature of laravel. Provide your answer in markdown form. Reply with only the answer in markdown form. Add Extra Line breaks between paragraphs. Use code examples in markdown when needed. Do not repeat these articles: '. $titles],
             ],
         ]);
 
